@@ -1,0 +1,392 @@
+#X3D V3.3 utf8
+
+#X3D V3.3 utf8
+
+Viewpoint {
+    fieldOfView 1.0
+    position 0 0 50000  
+    orientation 0 0 0 0 
+    description "Start"
+}
+
+
+Viewpoint {
+    fieldOfView 1.0
+    position 0 50000 0  
+    orientation -1 0 0 1.5708  
+    description "Widok z góry"
+}
+
+
+DEF Czas TimeSensor {
+    cycleInterval 12
+    loop TRUE
+}
+DEF InterSlonce OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+DEF InterPlanety OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 -1 0, 0 -1 0 1.57, 0 -1 0 3.14, 0 -1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF Slonce Transform {
+    translation 0 0 0
+    children [
+        Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url ["sun.jpg"]
+                }
+            }
+            geometry Sphere {
+                radius 3000
+            }
+        }
+    ]
+}
+
+ROUTE Czas.fraction_changed TO InterSlonce.set_fraction
+ROUTE InterSlonce.value_changed TO Slonce.set_rotation
+
+
+############# MERKURY
+DEF CzasMerkury TimeSensor {
+    cycleInterval 40
+    loop TRUE
+}
+DEF CzasMerkury2 TimeSensor {
+    cycleInterval 30
+    loop TRUE
+}
+DEF intermerkury OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF merkury Transform {
+    translation 4000 0 0
+    center -4000 0 0
+    children [
+        DEF merkury2 Transform{
+            children [
+                Shape {
+                    appearance Appearance {
+                        texture  ImageTexture {
+                            url ["2k_mercury.jpg"]
+                        }
+                    }
+                        geometry Sphere {
+                            radius 200
+                        }
+                    }
+ 
+            ]
+        }
+       
+    ]
+}
+
+ROUTE CzasMerkury.fraction_changed TO intermerkury.set_fraction
+ROUTE intermerkury.value_changed TO merkury.set_rotation
+ROUTE CzasMerkury2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO merkury2.set_rotation
+
+
+#######      WENUS
+DEF CzasWenus TimeSensor {
+    cycleInterval 100
+    loop TRUE
+}
+DEF CzasWenus2 TimeSensor {
+    cycleInterval 120
+    loop TRUE
+}
+DEF interWenus OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF wenus Transform {
+    translation 6000 0 0
+    center -6000 0 0
+    children [
+        DEF wenus2 Transform{
+            children [
+                Shape {
+                    appearance Appearance {
+                        texture  ImageTexture {
+                            url ["2k_venus_atmosphere.jpg"]
+                        }
+                    }
+                        geometry Sphere {
+                            radius 400
+                        }
+                    }
+ 
+            ]
+        }
+       
+    ]
+}
+
+ROUTE CzasWenus.fraction_changed TO interWenus.set_fraction
+ROUTE interWenus.value_changed TO wenus.set_rotation
+ROUTE CzasWenus2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO wenus2.set_rotation
+
+
+#########            ZIEMIA
+DEF CzasZiemia TimeSensor {
+    cycleInterval 170
+    loop TRUE
+}
+DEF CzasZiemia2 TimeSensor {
+    cycleInterval 12
+    loop TRUE
+}
+DEF interZiemia OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF ziemia Transform {
+    translation 8000 0 0
+    center -8000 0 0
+    children [
+        DEF ziemia2 Transform{
+            children [
+                Shape {
+                    appearance Appearance {
+                        texture  ImageTexture {
+                           url ["2k_earth_daymap.jpg"]
+                        }
+                    }
+                        geometry Sphere {
+                            radius 600
+                        }
+                    }
+ 
+            ]
+        }
+       
+    ]
+}
+
+ROUTE CzasZiemia.fraction_changed TO interZiemia.set_fraction
+ROUTE interZiemia.value_changed TO ziemia.set_rotation
+ROUTE CzasZiemia2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO ziemia2.set_rotation
+
+
+######     MARS
+DEF CzasMars TimeSensor {
+    cycleInterval 300
+    loop TRUE
+}
+DEF CzasMars2 TimeSensor {
+    cycleInterval 12
+    loop TRUE
+}
+DEF interMars OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF mars Transform {
+    translation 10000 0 0
+    center -10000 0 0
+    children [
+        DEF mars2 Transform{
+            children [
+                Shape {
+                    appearance Appearance {
+                        texture  ImageTexture {
+                           url ["2k_mars.jpg"]
+                        }
+                    }
+                        geometry Sphere {
+                            radius 350
+                        }
+                    }
+ 
+            ]
+        }
+    ]
+}
+
+ROUTE CzasMars.fraction_changed TO interMars.set_fraction
+ROUTE interMars.value_changed TO mars.set_rotation
+ROUTE CzasMars2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO mars2.set_rotation
+
+##########     JOWISZ
+DEF CzasJowisz TimeSensor {
+    cycleInterval 400
+    loop TRUE
+}
+DEF CzasJowisz2 TimeSensor {
+    cycleInterval 5
+    loop TRUE
+}
+DEF interJowisz OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF jowisz Transform {
+    translation 13000 0 0
+    center -13000 0 0
+    children [
+        DEF jowisz2 Transform{
+            children [
+                Shape {
+                    appearance Appearance {
+                        texture ImageTexture {
+                            url ["2k_jupiter.jpg"]
+                        }
+                    }
+                    geometry Sphere {
+                        radius 1800
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+
+ROUTE CzasJowisz.fraction_changed TO interJowisz.set_fraction
+ROUTE interJowisz.value_changed TO jowisz.set_rotation
+ROUTE CzasJowisz2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO jowisz2.set_rotation
+
+
+########          SATURN
+
+DEF CzasSaturn TimeSensor {
+    cycleInterval 500
+    loop TRUE
+}
+DEF CzasSaturn2 TimeSensor {
+    cycleInterval 5
+    loop TRUE
+}
+DEF interSaturn OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF saturn Transform {
+    translation 18500 0 0
+    center -18500 0 0
+    children [
+        DEF saturn2 Transform{
+            children[
+                Shape {
+                    appearance Appearance {
+                        texture ImageTexture {
+                            url ["2k_saturn.jpg"]
+                        }
+                    }
+                    geometry Sphere {
+                        radius 2200
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+ROUTE CzasSaturn.fraction_changed TO interSaturn.set_fraction
+ROUTE interSaturn.value_changed TO saturn.set_rotation
+ROUTE CzasSaturn2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO saturn2.set_rotation
+
+
+##########       URAN
+
+DEF CzasUran TimeSensor {
+    cycleInterval 700
+    loop TRUE 
+}
+DEF CzasUran2 TimeSensor {
+    cycleInterval 9
+    loop TRUE 
+}
+DEF interUran OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF uran Transform {
+    translation 23500 0 0
+    center -23500 0 0
+    children [
+        DEF uran2 Transform{
+            children[
+                Shape {
+                    appearance Appearance {
+                        texture ImageTexture {
+                            url ["2k_uranus.jpg"]
+                        }
+                    }
+                    geometry Sphere {
+                        radius 1000
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+ROUTE CzasUran.fraction_changed TO interUran.set_fraction
+ROUTE interUran.value_changed TO uran.set_rotation
+ROUTE CzasUran2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO uran2.set_rotation
+
+
+##########       NEPTUN
+
+DEF CzasNeptun TimeSensor {
+    cycleInterval 1000
+    loop TRUE
+}
+DEF CzasNeptun2 TimeSensor {
+    cycleInterval 8
+    loop TRUE
+}
+DEF interNeptun OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 0 1 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71 , 0 0 1 6.28]
+}
+
+DEF neptun Transform {
+    translation 27000 0 0
+    center -27000 0 0
+    children [
+        DEF neptun2 Transform{
+            children[
+                Shape {
+                    appearance Appearance {
+                        texture ImageTexture {
+                            url ["2k_neptune.jpg"]
+                        }
+                    }
+                    geometry Sphere {
+                        radius 950
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+ROUTE CzasNeptun.fraction_changed TO interNeptun.set_fraction
+ROUTE interNeptun.value_changed TO neptun.set_rotation
+ROUTE CzasNeptun2.fraction_changed TO InterPlanety.set_fraction
+ROUTE InterPlanety.value_changed TO neptun2.set_rotation
+
+
+

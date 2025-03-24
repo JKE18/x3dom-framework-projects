@@ -1,0 +1,558 @@
+#X3D V3.3 utf8
+
+## pierwszy korytarz
+
+Transform{
+    translation 250 25 425
+    scale 0.1 0.5 1.5
+    children[
+        DEF sciana Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 100 100 100
+            } 
+        }
+    ]
+}
+
+Transform{
+    translation 300 25 455
+    scale 0.1 0.5 1
+    children[
+        USE sciana
+    ]
+}
+
+##skret w prawo
+
+Transform{
+    translation 362 25 400
+    scale 1.33 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 335 25 350
+    scale 1.8 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+##pierwszy zaułek w prawo
+
+Transform{
+    translation 430 25 425
+    scale 0.05 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+
+#korytarz w gore
+Transform{
+    translation 385 25 450
+    scale 0.85 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 430 25 280
+    scale 0.1 0.5 1.5
+    children[
+        USE sciana
+    ]
+}
+
+#skret w lewo
+Transform{
+    translation 335 25 200
+    scale 2 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 365 25 150
+    scale 2.6 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+# skret w prawo
+Transform{
+    translation 240 25 75
+    scale 0.1 0.5 1.5
+    children[
+        USE sciana
+    ]
+}
+
+#skret w lewo
+
+Transform{
+    translation 240 25 250
+    scale 0.1 0.5 1
+    children[
+        USE sciana
+    ]
+}
+
+#zaulek w lewo
+Transform{
+    translation 300 25 300
+    scale 1.25 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 365 25 273
+    scale 0.1 0.5 0.63
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 335 25 245
+    scale 0.7 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+##powrot do korytarza, przejscie prosto
+
+Transform{
+    translation 20 25 150
+    scale 3 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 20 25 200
+    scale 3 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+#przejscie w dol
+
+Transform{
+    translation 175 25 320
+    scale 0.1 0.5 2.5
+    children[
+        USE sciana
+    ]
+}
+
+#skret w prawo
+Transform{
+    translation 105 25 450
+    scale 1.5 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+#kontynuacja prosto
+
+Transform{
+    translation -185 25 450
+    scale 3.2 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+#wracamy zaułek w prawo
+
+Transform{
+    translation -25 25 400
+    scale 0.1 0.5 1.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 25 25 250
+    scale 0.1 0.5 0.9
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 25 25 400
+    scale 0.1 0.5 1.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -25 25 250
+    scale 0.1 0.5 0.9
+    children[
+        USE sciana
+    ]
+}
+
+#rondo 
+
+Transform{
+    translation 100 25 320
+    scale 0.75 0.5 1.6
+    children[
+        USE sciana
+    ]
+}
+
+#zaulek skret w lewo
+
+Transform{
+    translation -100 25 290
+    scale 1.5 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -98 25 340
+    scale 1.55 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+#zejscie w dol
+
+Transform{
+    translation -170 25 375
+    scale 0.1 0.5 0.7
+    children[
+        USE sciana
+    ]
+}
+Transform{
+    translation -220 25 375
+    scale 0.1 0.5 0.7
+    children[
+        USE sciana
+    ]
+}
+
+#2 zaulki
+
+Transform{
+    translation -260 25 405
+    scale 0.9 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -130 25 405
+    scale 0.9 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+Transform{
+    translation -280 25 340
+    scale 1.3 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -340 25 400
+    scale 0.1 0.5 1.1
+    children[
+        USE sciana
+    ]
+}
+
+# z zaulku przejscie w gore
+
+Transform{
+    translation -170 25 245
+    scale 0.1 0.5 0.95
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -125 25 230
+    scale 0.1 0.5 0.5
+    children[
+        USE sciana
+    ]
+}
+
+#polaczenie na wprost z drugim dlugim korytarzem
+
+Transform{
+    translation -280 25 290
+    scale 1.3 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -220 25 245
+    scale 0.1 0.5 0.95
+    children[
+        USE sciana
+    ]
+}
+
+#lewy dolny rog
+
+Transform{
+    translation -400 25 435
+    scale 0.1 0.5 1.2
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -420 25 380
+    scale 0.5 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -450 25 330
+    scale 1.1 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+Transform{
+    translation -440 25 410
+    scale 0.1 0.5 0.65
+    children[
+        USE sciana
+    ]
+}
+
+#dlugi korytarz od lewego dolu
+
+Transform{
+    translation -400 25 175
+    scale 0.1 0.5 3
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -350 25 185
+    scale 0.1 0.5 2.2
+    children[
+        USE sciana
+    ]
+}
+
+#pulapka na lewo 
+
+Transform{
+    translation -420 25 25
+    scale 0.5 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -450 25 145
+    scale 0.1 0.5 2.5
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -450 25 -240
+    scale 0.1 0.5 4.35
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -390 25 -460
+    scale 1.25 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+
+DEF ScianaPulapka Transform{
+    translation -330 25 -480
+    scale 0.1 0.5 0.5
+    children[
+        USE sciana
+        DEF Czujnik CylinderSensor { 
+            autoOffset TRUE 
+            minAngle -1.57 
+            maxAngle 1.57 } 
+    ]
+}
+
+
+
+ROUTE Czujnik.rotation_changed TO ScianaPulapka.set_rotation
+
+#powrot do srodka, korytarz 
+
+Transform{
+    translation -245 25 150
+    scale 0.6 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -257 25 200
+    scale 0.8 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+#pionowa sciana w gore
+
+Transform{
+    translation -170 25 30
+    scale 0.1 0.5 2.5
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 170 25 30
+    scale 0.1 0.5 2.45
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -25 25 -90
+    scale 2.95 0.5 0.1
+    children[
+        USE sciana
+    ]
+}
+
+
+# 4 kwadratu w pulapce
+
+Transform{
+    translation -95 25 -15
+    scale 0.6 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation -95 25 80
+    scale 0.6 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 0 25 -15
+    scale 0.6 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 0 25 80
+    scale 0.6 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+
+Transform{
+    translation 100 25 -15
+    scale 0.6 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+Transform{
+    translation 100 25 80
+    scale 0.6 0.5 0.6
+    children[
+        USE sciana
+    ]
+}
+
+
+DEF ScianaPulapka2 Transform{
+    translation -200 25 0
+    scale 0.5 0.5 0.1
+    children[
+        USE sciana
+        DEF Czujnik2 PlaneSensor { 
+            autoOffset FALSE 
+            offset 0 0 0
+            minPosition -200 -25
+            maxPosition -200 25 } 
+
+    ]
+}
+
+
+
+ROUTE Czujnik2.translation_changed TO ScianaPulapka2.set_translation
+

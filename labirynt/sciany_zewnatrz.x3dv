@@ -1,0 +1,205 @@
+#X3D V3.3 utf8
+
+#sciany z lewej i prawej po zewnatrz
+
+
+Transform{
+    translation -500 25 0
+    children[
+        DEF scianyLP Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 10 50 1000
+            } 
+        }
+    ]
+}
+
+Transform{
+    translation 500 25 0
+    children[ USE scianyLP]
+}
+
+
+#podloga
+Transform {
+    children [
+      DEF stopien Shape { 
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.1 0.1 0.1
+                    transparency 0 
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box {
+                size 1000 5 1000
+
+            }
+        }
+    ]
+}
+
+
+#podloga przed wejsciem
+
+Transform {
+    translation 275 0 500
+    children [
+      DEF stopien Shape { 
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.1 0.1 0.1
+                    transparency 0 
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box {
+                size 100 5 100
+
+            }
+        }
+    ]
+}
+
+# sciana z przodu
+
+Transform{
+    translation -120 25 500
+    children[
+        Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 750 50 10
+            } 
+        }
+    ]
+}
+
+Transform{
+    translation 400 25 500
+    children[
+        Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 200 50 10
+            } 
+        }
+    ]
+}
+
+#wejscie
+
+DEF Przycisk Transform{
+   translation 320 25 505
+   children[
+        Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 15 10 10
+            } 
+        }
+    DEF sensor TouchSensor {
+        enabled TRUE
+        isActive TRUE
+    }
+    ]
+}
+
+
+DEF Czas TimeSensor {
+    cycleInterval 7.5
+    loop FALSE
+}
+
+DEF inter PositionInterpolator {
+    key [0, 0.5, 1]
+    keyValue [275 25 500, 275 75 500, 275 25 500]
+}
+
+DEF wejscie Transform{
+    translation 275 25 500
+    children[
+        Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 50 50 10
+            } 
+        }
+    ]
+}
+ROUTE sensor.touchTime TO Czas.set_startTime
+
+ROUTE Czas.fraction_changed TO inter.set_fraction
+ROUTE inter.value_changed TO wejscie.set_translation
+
+## sciana z tylu do wyjscia
+
+Transform{
+    translation -400 25 -500
+    children[
+        Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 200 50 10
+            } 
+        }
+    ]
+}
+
+Transform{
+    translation 120 25 -500
+    children[
+        Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 750 50 10
+            } 
+        }
+    ]
+}
+
+
+

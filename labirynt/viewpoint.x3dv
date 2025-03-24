@@ -1,0 +1,29 @@
+#X3D V3.3 utf8
+
+Viewpoint {
+
+    position 0 1000 1500
+    orientation -1 0 0 0.55  
+    description "Start"
+}
+
+Viewpoint {
+    fieldOfView 1.0
+    position 0 1000 0  
+    orientation -1 0 0 1.5708  
+    description "Widok z gory"
+}
+
+Viewpoint {
+    fieldOfView 1.0
+    position 275 25 575  
+    orientation 1 0 0 0  
+    description "Wejscie"
+}
+
+PointLight {
+    color 1 1 1
+    location 0 100 0
+    radius 100
+    ambientIntensity 0.5
+}

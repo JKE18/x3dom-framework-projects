@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://www.x3dom.org/release/x3dom.js"></script>
+    <link rel="stylesheet" href="https://www.x3dom.org/release/x3dom.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        x3d {
+            width: 1500px;
+            height: 1000px;
+        }
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<x3d>
+    <scene>
+        <viewpoint position="0 5 20" orientation="1 0 0 -0.3" description="Widok z góry i oddalenia"></viewpoint>
+        <Background 
+            groundAngle="1.309 1.57"
+            groundColor="0.1 0.1 0.0, 0.4 0.25 0.2, 0.6 0.6 0.6"
+            skyAngle="1.309 1.57"
+            skyColor="0.0 0.2 0.7, 0.0 0.5 1.0, 1.0 1.0 1.0">
+        </Background>
+        <!-- <PointLight location="0 10 0" intensity="1" color="1 1 1"></PointLight> -->
+
+
+        <!-- PODLOZE -->
+        <transform translation="0 -0.2 0">
+            <shape>
+                <appearance>
+                    <imageTexture url="grass.jpg"></imageTexture>
+                    <textureTransform scale="10 10"></textureTransform>
+                </appearance>
+                <box size="50 0.1 50"></box>
+            </shape>
+        </transform>
+        <!-- DROGA -->
+        <transform translation="0 -0.1 0">
+            <shape>
+                <appearance>
+                    <material diffuseColor="0.2 0.2 0.2"></material>
+                </appearance>
+                <box size="50 0.1 3"></box>
+            </shape>
+        </transform>
+        <transform translation="0 -0.1 0" rotation="0 1 0 1.5708">
+            <shape>
+                <appearance>
+                    <material diffuseColor="0.2 0.2 0.2"></material>
+                </appearance>
+                <box size="50 0.1 3"></box>
+            </shape>
+        </transform>
+
+
+        <!--1 sygnalizator -->
+        <transform DEF="TrafficLightGroup1" translation="1.8 1.25 3.5" scale="0.4 0.4 0.4">
+            <transform translation="0 -2 0">
+                <shape><appearance><material diffuseColor="0.5 0.5 0.5"></material></appearance><box size="0.2 6 0.2"></box></shape>
+            </transform>
+            <transform translation="0 0.5 0.2">
+                <shape><appearance><material diffuseColor="0.2 0.2 0.2"></material></appearance><box size="0.5 1.5 0.3"></box></shape>
+            </transform>
+            <transform translation="0 1 0.35">
+                <shape><appearance><material id="redLightMaterial1" diffuseColor="1 0 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0.5 0.35">
+                <shape><appearance><material id="yellowLightMaterial1" diffuseColor="0.5 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0 0.35">
+                <shape><appearance><material id="greenLightMaterial1" diffuseColor="0 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+        </transform>
+
+        <!-- Drugi sygnalizator -->
+        <transform DEF="TrafficLightGroup2" translation="-1.8 1.25 -3.5" scale="0.4 0.4 0.4" rotation = "0 1 0 3.14">
+            <transform translation="0 -2 0">
+                <shape><appearance><material diffuseColor="0.5 0.5 0.5"></material></appearance><box size="0.2 6 0.2"></box></shape>
+            </transform>
+            <transform translation="0 0.5 0.2">
+                <shape><appearance><material diffuseColor="0.2 0.2 0.2"></material></appearance><box size="0.5 1.5 0.3"></box></shape>
+            </transform>
+            <transform translation="0 1 0.35">
+                <shape><appearance><material id="redLightMaterial2" diffuseColor="1 0 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0.5 0.35">
+                <shape><appearance><material id="yellowLightMaterial2" diffuseColor="0.5 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0 0.35">
+                <shape><appearance><material id="greenLightMaterial2" diffuseColor="0 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+        </transform>
+
+        <!-- Trzeci sygnalizator -->
+        <transform DEF="TrafficLightGroup3" translation="3.5 1.25 -1.8" scale="0.4 0.4 0.4" rotation = "0 1 0 1.57">
+            <transform translation="0 -2 0">
+                <shape><appearance><material diffuseColor="0.5 0.5 0.5"></material></appearance><box size="0.2 6 0.2"></box></shape>
+            </transform>
+            <transform translation="0 0.5 0.2">
+                <shape><appearance><material diffuseColor="0.2 0.2 0.2"></material></appearance><box size="0.5 1.5 0.3"></box></shape>
+            </transform>
+            <transform translation="0 1 0.35">
+                <shape><appearance><material id="redLightMaterial3" diffuseColor="1 0 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0.5 0.35">
+                <shape><appearance><material id="yellowLightMaterial3" diffuseColor="0.5 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0 0.35">
+                <shape><appearance><material id="greenLightMaterial3" diffuseColor="0 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+        </transform>
+
+        <!-- Czwarty sygnalizator -->
+        <transform DEF="TrafficLightGroup4" translation="-3.5 1.25 1.8" scale="0.4 0.4 0.4" rotation = "0 -1 0 1.57">
+            <transform translation="0 -2 0">
+                <shape><appearance><material diffuseColor="0.5 0.5 0.5"></material></appearance><box size="0.2 6 0.2"></box></shape>
+            </transform>
+            <transform translation="0 0.5 0.2">
+                <shape><appearance><material diffuseColor="0.2 0.2 0.2"></material></appearance><box size="0.5 1.5 0.3"></box></shape>
+            </transform>
+            <transform translation="0 1 0.35">
+                <shape><appearance><material id="redLightMaterial4" diffuseColor="1 0 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0.5 0.35">
+                <shape><appearance><material id="yellowLightMaterial4" diffuseColor="0.5 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+            <transform translation="0 0 0.35">
+                <shape><appearance><material id="greenLightMaterial4" diffuseColor="0 0.5 0"></material></appearance><sphere radius="0.15"></sphere></shape>
+            </transform>
+        </transform>
+
+        <!-- Grupa dla chodników i krawężników -->
+        <transform DEF="SidewalkGroup">
+            <!-- Chodniki dla pionowej drogi -->
+            <transform translation="2.5 -0.05 13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="2 0.1 23.5"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-2.5 -0.05 13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="2 0.1 23.5"></box>
+                </shape>
+            </transform>
+
+            <transform translation="2.5 -0.05 -13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="2 0.1 23.5"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-2.5 -0.05 -13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="2 0.1 23.5"></box>
+                </shape>
+            </transform>
+
+            <!-- Krawężniki dla pionowej drogi -->
+            <transform translation="1.55 0 13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="0.1 0.07 23.5"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-1.55 0 13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="0.1 0.07 23.5"></box>
+                </shape>
+            </transform>
+
+            <transform translation="1.55 0 -13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="0.1 0.07 23.5"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-1.55 0 -13.25">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="0.1 0.07 23.5"></box>
+                </shape>
+            </transform>
+
+            <!-- Chodniki dla poziomej drogi -->
+
+            <transform translation="13.25 -0.05 2.5">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="23.5 0.1 2"></box>
+                </shape>
+            </transform>
+            
+            <transform translation="13.25 -0.05 -2.5">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="23.5 0.1 2"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-13.25 -0.05 2.5">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="23.5 0.1 2"></box>
+                </shape>
+            </transform>
+            
+            <transform translation="-13.25 -0.05 -2.5">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.7 0.7 0.7"></material>
+                    </appearance>
+                    <box size="23.5 0.1 2"></box>
+                </shape>
+            </transform>
+
+
+            <!-- Krawężniki dla poziomej drogi -->
+            
+            <transform translation="13.25 0 1.55">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="23.5 0.07 0.1"></box>
+                </shape>
+            </transform>
+
+            <transform translation="13.25 0 -1.55">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="23.5 0.07 0.1"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-13.25 0 1.55">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="23.5 0.07 0.1"></box>
+                </shape>
+            </transform>
+
+            <transform translation="-13.25 0 -1.55">
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="23.5 0.07 0.1"></box>
+                </shape>
+            </transform>
+        </transform>
+
+        <transform DEF="CarTransform" translation="0.75 -0.2 6" scale = "0.35 0.35 0.35" rotation = "0 1 0 3.14">
+            <group>
+                <!-- Karoseria -->
+                <transform translation="0 1.2 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.3 0.3 0.6"></material>
+                        </appearance>
+                        <box size="2 1 4"></box>
+                    </shape>
+                </transform>
+                <!-- Dach -->
+                <transform translation="0 2 -0.5">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.3 0.3 0.6"></material>
+                        </appearance>
+                        <box size="2 0.8 2"></box>
+                    </shape>
+                </transform>
+                <!-- Koła -->
+            
+                <transform translation="1 0.81 1" scale = "0.8 0.8 0.8" rotation = "0 0 1 1.57">
+                    <shape>
+                        <appearance> 
+                            <material diffuseColor="0.2 0.2 0.2"></material>
+                        </appearance>
+                        <cylinder radius="0.5" height="0.4"></cylinder>
+                    </shape>
+                </transform>
+                <transform translation="-1 0.81 1" scale = "0.8 0.8 0.8" rotation = "0 0 1 1.57">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.2 0.2 0.2"></material>
+                        </appearance>
+                        <cylinder radius="0.5" height="0.4"></cylinder>
+                    </shape>
+                </transform>
+                <transform translation="1 0.81 -1" scale = "0.8 0.8 0.8" rotation = "0 0 1 1.57">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.2 0.2 0.2"></material>
+                        </appearance>
+                        <cylinder radius="0.5" height="0.4"></cylinder>
+                    </shape>
+                </transform>
+                <transform translation="-1 0.81 -1" scale = "0.8 0.8 0.8" rotation = "0 0 1 1.57">
+
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.2 0.2 0.2"></material>
+                        </appearance>
+                        <cylinder radius="0.5" height="0.4"></cylinder>
+                    </shape>
+                </transform>
+
+                <TimeSensor id="CarMoveTimer" cycleInterval="5" loop="false"></TimeSensor>
+                <PositionInterpolator DEF="CarMovePath" key="0 1" keyValue="0.75 -0.2 6, 0.75 -0.2 -24"></PositionInterpolator>
+                <ROUTE fromNode="CarMoveTimer" fromField="fraction_changed" toNode="CarMovePath" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="CarMovePath" fromField="value_changed" toNode="CarTransform" toField="set_translation"></ROUTE>  
+
+            </group>
+        </transform>
+        
+        <!-- BLOKI -->
+        <!-- POLUDNIE -->
+
+        <!-- 1 wejscia -->
+        <transform translation="8.5 2.3 20" rotation = "0 -1 0 1.57">
+            <group DEF="BuildingBlock1">
+                <!-- Blok -->
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="10 5 10"></box>
+                </shape>
+
+                <!-- Okna -->
+                <transform translation="-3 1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+    
+                <transform translation="3 1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+    
+                <transform translation="-3 -1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+    
+                <transform translation="3 -1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+    
+                <!-- Drzwi -->
+                <transform translation="0 -1.75 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="door.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 2 0.1"></box>
+                    </shape>
+                </transform>
+
+                
+            </group>
+        </transform>
+        <!-- 2 wejscia -->
+        <transform translation="8.5 2.3 8.5" rotation="0 -1 0 3.14">
+            <group DEF="BuildingBlock2">
+                <!-- Blok -->
+                <shape>
+                    <appearance>
+                        <material diffuseColor="0.5 0.5 0.5"></material>
+                    </appearance>
+                    <box size="10 5 10"></box>
+                </shape>
+        
+                <!-- Okna na przedniej ścianie -->
+                <transform translation="-3 1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="3 1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="-3 -1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="3 -1 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 1 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <!-- Drzwi na przedniej ścianie -->
+                <transform translation="0 -1.75 5.01">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="door.jpg"></imageTexture>
+                        </appearance>
+                        <box size="1 2 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <!-- Okna na prawej ścianie -->
+                <transform translation="5.01 1 -3">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="0.1 1 1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="5.01 1 3">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="0.1 1 1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="5.01 -1 -3">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="0.1 1 1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="5.01 -1 3">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="window.jpg"></imageTexture>
+                        </appearance>
+                        <box size="0.1 1 1"></box>
+                    </shape>
+                </transform>
+        
+                <!-- Drzwi na prawej ścianie -->
+                <transform translation="5.01 -1.75 0">
+                    <shape>
+                        <appearance>
+                            <imageTexture url="door.jpg"></imageTexture>
+                        </appearance>
+                        <box size="0.1 2 1"></box>
+                    </shape>
+                </transform>
+            </group>
+        </transform>
+
+        <transform translation="-8.5 2.3 20" rotation="0 1 0 1.57">
+            <group USE="BuildingBlock1"></group>
+        </transform>
+
+        <transform translation="-8.5 2.3 8.5" rotation="0 1 0 1.57">
+            <group USE="BuildingBlock2"></group>
+        </transform>
+
+        <transform translation="-8.5 2.3 20">
+            <group USE="BuildingBlock"></group>
+        </transform>
+
+        <!-- POLNOC -->
+
+        <transform translation="-8.5 2.3 -20" rotation="0 1 0 1.57">
+            <group USE="BuildingBlock1"></group>
+        </transform>
+
+        <transform translation="-8.5 2.3 -8.5" rotation="0 1 0 0">
+            <group USE="BuildingBlock2"></group>
+        </transform>
+
+        <transform translation="8.5 2.3 -20" rotation="0 -1 0 1.57">
+            <group USE="BuildingBlock1"></group>
+        </transform>
+
+        <transform translation="8.5 2.3 -8.5" rotation="0 -1 0 1.57">
+            <group USE="BuildingBlock2"></group>
+        </transform>
+
+
+        <!-- DOPELNIENIE WSCHOD -->
+
+        <transform translation="20 2.3 -8.5" >
+            <group USE="BuildingBlock1"></group>
+        </transform>
+        <transform translation="20 2.3 8.5" rotation="0 -1 0 3.14">
+            <group USE="BuildingBlock1"></group>
+        </transform>
+
+
+        <!-- DOPELNIENIE ZACHOD -->
+
+        <transform translation="-20 2.3 -8.5" >
+            <group USE="BuildingBlock1"></group>
+        </transform>
+        <transform translation="-20 2.3 8.5" rotation="0 -1 0 3.14">
+            <group USE="BuildingBlock1"></group>
+        </transform>
+
+        <!-- PASY -->
+        <transform translation="0 0.01 3">
+            <group DEF="Crosswalk">
+                <transform translation="-1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="-0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            </group>
+        </transform>
+
+        <transform translation="3 0.01 0" rotation = "0 1 0 1.57">
+            <group DEF="Crosswalk">
+                <transform translation="-1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="-0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            </group>
+        </transform>
+
+        <transform translation="-3 0.01 0" rotation = "0 -1 0 1.57">
+            <group DEF="Crosswalk">
+                <transform translation="-1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="-0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            </group>
+        </transform>
+
+        <transform translation="0 0.01 -3" rotation = "0 1 0 3.14">
+            <group DEF="Crosswalk">
+                <transform translation="-1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="-0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="0.4 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            
+                <transform translation="1.2 -0.05 0.4">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="0.4 0.01 2"></box>
+                    </shape>
+                </transform>
+            </group>
+        </transform>
+
+        <!-- PRZECHODZIEN -->
+        <transform DEF="Przechodzien" translation="1.8 0.15 4" scale="0.5 0.5 0.5" rotation = "0 1 0 1.57">
+            <group>
+                <!-- Głowa -->
+                <transform translation="0 1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 0.8 0.6"></material>
+                        </appearance>
+                        <sphere radius="0.2"></sphere>
+                    </shape>
+                </transform>
+
+                <!-- Lewe oko -->
+                <transform translation="-0.08 1.03 -0.18">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 1"></material>
+                        </appearance>
+                        <sphere radius="0.02"></sphere>
+                    </shape>
+                </transform>
+
+                <!-- Prawe oko -->
+                <transform translation="0.08 1.03 -0.18">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 1"></material>
+                        </appearance>
+                        <sphere radius="0.02"></sphere>
+                    </shape>
+                </transform>
+
+                <!-- Usta -->
+                <transform translation="0 0.95 -0.2">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 0 0"></material>
+                        </appearance>
+                        <box size="0.06 0.01 0.01"></box>
+                    </shape>
+                </transform>
+
+                <!-- Tułów -->
+                <transform translation="0 0.5 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 1"></material>
+                        </appearance>
+                        <box size="0.5 0.65 0.3"></box>
+                    </shape>
+                </transform>
+
+                <!-- Nogi -->
+                <transform DEF="LeftLeg" translation="-0.15 -0.08 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                        </appearance>
+                        <box size="0.1 0.6 0.1"></box>
+                    </shape>
+                </transform>
+
+                <transform DEF="RightLeg" translation="0.15 -0.08 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 0"></material>
+                        </appearance>
+                        <box size="0.1 0.6 0.1"></box>
+                    </shape>
+                </transform>
+
+                <!-- rece -->
+                <transform translation="-0.3 0.5 0" rotation = "0 0 -1 0.2">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 1"></material>
+                        </appearance>
+                        <box size="0.1 0.6 0.1"></box>
+                    </shape>
+                </transform>
+
+                
+                <transform translation="0.3 0.5 0" rotation = "0 0 1 0.2">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0 0 1"></material>
+                        </appearance>
+                        <box size="0.1 0.6 0.1"></box>
+                    </shape>
+                </transform>
+
+                <TimeSensor DEF="PrzechodzienMoveTimer" cycleInterval="5" loop="false"></TimeSensor>
+                <PositionInterpolator DEF="PrzechodzienMovePath" key="0 1" keyValue="1.8 0.15 4, -1.8 0.15 4"></PositionInterpolator>
+                
+                <ROUTE fromNode="PrzechodzienMoveTimer" fromField="fraction_changed" toNode="PrzechodzienMovePath" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="PrzechodzienMovePath" fromField="value_changed" toNode="Przechodzien" toField="set_translation"></ROUTE>
+
+                
+                <TimeSensor DEF="LegsMoveTimer" cycleInterval="0.5" loop="false"></TimeSensor>
+                <OrientationInterpolator DEF="LeftLegAnimation" key="0 0.5 1" keyValue="1 0 0 0, 1 0 0 0.52, 1 0 0 0"></OrientationInterpolator>
+                <OrientationInterpolator DEF="RightLegAnimation" key="0 0.5 1" keyValue="1 0 0 0, 1 0 0 -0.52, 1 0 0 0"></OrientationInterpolator>
+
+                <ROUTE fromNode="LegsMoveTimer" fromField="fraction_changed" toNode="LeftLegAnimation" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="LeftLegAnimation" fromField="value_changed" toNode="LeftLeg" toField="set_rotation"></ROUTE>
+                <ROUTE fromNode="LegsMoveTimer" fromField="fraction_changed" toNode="RightLegAnimation" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="RightLegAnimation" fromField="value_changed" toNode="RightLeg" toField="set_rotation"></ROUTE>
+
+
+            </group>
+        </transform>
+        <!-- SLONCE -->
+        <transform DEF="SunGroup" translation="0 30 0" center = "0 -50 0">
+            <group>
+                <shape>
+                    <appearance>
+                        <material DEF="SunMaterial" diffuseColor="1 1 0"></material>
+                    </appearance>
+                    <sphere radius="2.5"></sphere>
+                </shape>
+
+                <PointLight id="SunLight" location="0 0 0" intensity="1" color="1 1 1" radius="50"></PointLight>
+
+
+                <TimeSensor DEF="SunOrbitTimer" cycleInterval="20" loop="true"></TimeSensor>
+
+                <OrientationInterpolator DEF="SunOrbitPath" key="0 0.5 1" keyValue="0 0 1 0, 0 0 1 3.14, 0 0 1 6.28"></OrientationInterpolator>
+                <ColorInterpolator DEF="SunColorPath" key="0 0.25 0.5 0.75 1" keyValue="1 1 0, 0.2 0.2 0.2, 0.2 0.2 0.2, 0.2 0.2 0.2, 1 1 0"></ColorInterpolator>
+
+                <ROUTE fromNode="SunOrbitTimer" fromField="fraction_changed" toNode="SunOrbitPath" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="SunOrbitPath" fromField="value_changed" toNode="SunGroup" toField="set_rotation"></ROUTE>
+                <ROUTE fromNode="SunOrbitTimer" fromField="fraction_changed" toNode="SunColorPath" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="SunColorPath" fromField="value_changed" toNode="SunMaterial" toField="set_diffuseColor"></ROUTE>
+            </group>
+        </transform>
+
+        
+        <transform DEF="Lamp1" translation="1.8 0 13" scale = "0.85 0.85 0.85">
+            <group>
+                <transform translation="0 1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.5 0.5 0.5"></material>
+                        </appearance>
+                        <box size="0.1 2 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2.1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.3 0.3 0.3"></material>
+                        </appearance>
+                        <box size="0.5 0.1 0.5"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 0"></material>
+                        </appearance>
+                        <sphere radius="0.1"></sphere>
+                    </shape>
+                    <PointLight id="LampLight1" location="0 2 0" intensity="1" color="1 1 0" radius="5"></PointLight>
+                </transform>
+
+                <ScalarInterpolator DEF="LampLightIntensity" key="0 0.17 0.36 0.53 0.7 0.88 1" keyValue="0 0 1 1 1 0 0"></ScalarInterpolator>
+                <ROUTE fromNode="SunOrbitTimer" fromField="fraction_changed" toNode="LampLightIntensity" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="LampLightIntensity" fromField="value_changed" toNode="LampLight1" toField="set_intensity"></ROUTE>
+            </group>
+        </transform>
+
+        <transform DEF="Lamp2" translation="-1.8 0 -13" scale = "0.85 0.85 0.85">
+            <group>
+                <transform translation="0 1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.5 0.5 0.5"></material>
+                        </appearance>
+                        <box size="0.1 2 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2.1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.3 0.3 0.3"></material>
+                        </appearance>
+                        <box size="0.5 0.1 0.5"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 0"></material>
+                        </appearance>
+                        <sphere radius="0.1"></sphere>
+                    </shape>
+                    <PointLight id="LampLight2" location="0 2 0" intensity="1" color="1 1 0" radius="5"></PointLight>
+                </transform>
+
+                <ScalarInterpolator DEF="LampLightIntensity2" key="0 0.17 0.36 0.53 0.7 0.88 1" keyValue="0 0 1 1 1 0 0"></ScalarInterpolator>
+                <ROUTE fromNode="SunOrbitTimer" fromField="fraction_changed" toNode="LampLightIntensity2" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="LampLightIntensity2" fromField="value_changed" toNode="LampLight2" toField="set_intensity"></ROUTE>
+            </group>
+        </transform>
+
+        <transform DEF="Lamp3" translation="13 0 -1.8" scale = "0.85 0.85 0.85">
+            <group>
+                <transform translation="0 1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.5 0.5 0.5"></material>
+                        </appearance>
+                        <box size="0.1 2 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2.1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.3 0.3 0.3"></material>
+                        </appearance>
+                        <box size="0.5 0.1 0.5"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 0"></material>
+                        </appearance>
+                        <sphere radius="0.1"></sphere>
+                    </shape>
+                    <PointLight id="LampLight3" location="0 2 0" intensity="1" color="1 1 0" radius="5"></PointLight>
+                </transform>
+
+                <ScalarInterpolator DEF="LampLightIntensity3" key="0 0.17 0.36 0.53 0.7 0.88 1" keyValue="0 0 1 1 1 0 0"></ScalarInterpolator>
+                <ROUTE fromNode="SunOrbitTimer" fromField="fraction_changed" toNode="LampLightIntensity3" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="LampLightIntensity3" fromField="value_changed" toNode="LampLight3" toField="set_intensity"></ROUTE>
+            </group>
+        </transform>
+
+        <transform DEF="Lamp4" translation="-13 0 1.8" scale = "0.85 0.85 0.85">
+            <group>
+                <transform translation="0 1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.5 0.5 0.5"></material>
+                        </appearance>
+                        <box size="0.1 2 0.1"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2.1 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="0.3 0.3 0.3"></material>
+                        </appearance>
+                        <box size="0.5 0.1 0.5"></box>
+                    </shape>
+                </transform>
+        
+                <transform translation="0 2 0">
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 0"></material>
+                        </appearance>
+                        <sphere radius="0.1"></sphere>
+                    </shape>
+                    <PointLight id="LampLight4" location="0 2 0" intensity="1" color="1 1 0" radius="5"></PointLight>
+                </transform>
+                <ScalarInterpolator DEF="LampLightIntensity4" key="0 0.17 0.36 0.53 0.7 0.88 1" keyValue="0 0 1 1 1 0 0"></ScalarInterpolator>
+                <ROUTE fromNode="SunOrbitTimer" fromField="fraction_changed" toNode="LampLightIntensity4" toField="set_fraction"></ROUTE>
+                <ROUTE fromNode="LampLightIntensity4" fromField="value_changed" toNode="LampLight4" toField="set_intensity"></ROUTE>
+            </group>
+        </transform>
+
+    </scene>
+</x3d>
+
+<button onclick="startTrafficLight('1')">Uruchom sygnalizator 1</button>
+<button onclick="startTrafficLight('2')">Uruchom sygnalizator 2</button>
+<button onclick="startTrafficLight('3')">Uruchom sygnalizator 3</button>
+<button onclick="startTrafficLight('4')">Uruchom sygnalizator 4</button>
+<button onclick="startCarAnimation()">Uruchom samochód</button>
+<button onclick="moveCarToPosition(0.75, -0.2, 6)">Ustaw samochód na start</button>
+<button onclick="startPedestrianAnimation()">Przejscie przez pasy</button>
+
+
+    <script>
+
+        
+
+
+        function startPedestrianAnimation() {
+            const moveTimer = document.querySelector('[DEF="PrzechodzienMoveTimer"]');
+            const legsTimer = document.querySelector('[DEF="LegsMoveTimer"]');
+            
+            legsTimer.setAttribute('loop', 'true');
+            setTimeout(() => {
+                legsTimer.setAttribute('loop', 'false');
+            }, 4600); 
+            moveTimer.setAttribute('startTime', (new Date().getTime()) / 1000);
+            legsTimer.setAttribute('startTime', (new Date().getTime()) / 1000);
+        }
+
+
+        function startCarAnimation() {
+            const timer = document.getElementById('CarMoveTimer');
+            
+            timer.setAttribute('loop', 'true');
+            timer.setAttribute('startTime', (new Date().getTime()) / 1000);
+
+            setTimeout(() => {
+                timer.setAttribute('loop', 'false');
+            }, 2000); 
+        }
+
+        function moveCarToPosition(x, y, z) {
+        const car = document.querySelector('[DEF="CarTransform"]');
+        if (car) {
+            car.setAttribute('translation', `${x} ${y} ${z}`);
+        } else {
+            console.error('Nie znaleziono elementu z DEF="CarTransform"');
+        }
+    }
+
+        function createDashedLinesPION(startX, startZ, stepZ, count) {
+        const scene = document.querySelector('scene');
+
+        for (let i = 0; i < count; i++) {
+            const zPosition = startZ + i * stepZ;
+
+            const dashedLine = document.createElement('transform');
+            dashedLine.setAttribute('translation', `${startX} 0 ${zPosition}`);
+
+            dashedLine.innerHTML = `
+                <shape>
+                    <appearance>
+                        <material diffuseColor="1 1 1"></material>
+                    </appearance>
+                    <box size="0.125 0.05 1"></box>
+                </shape>
+            `;
+
+            scene.appendChild(dashedLine);
+        }
+    }
+
+        //pionowa droga
+        createDashedLinesPION(0, -24, 4, 5);
+        createDashedLinesPION(0, 8, 4, 5);
+
+        function createDashedLinesPOZIOM(startX, startZ, stepX, count) {
+            const scene = document.querySelector('scene');
+
+            for (let i = 0; i < count; i++) {
+                const xPosition = startX + i * stepX;
+
+                const dashedLine = document.createElement('transform');
+                dashedLine.setAttribute('translation', `${xPosition} 0 ${startZ}`);
+
+                dashedLine.innerHTML = `
+                    <shape>
+                        <appearance>
+                            <material diffuseColor="1 1 1"></material>
+                        </appearance>
+                        <box size="1 0.05 0.125"></box>
+                    </shape>
+                `;
+
+                scene.appendChild(dashedLine);
+            }
+        }
+
+        //pozioma droga
+        createDashedLinesPOZIOM(-24, 0, 4, 5);
+        createDashedLinesPOZIOM(8, 0, 4, 5);
+
+
+        function startTrafficLight(idPrefix) {
+            let currentLight = "redYellow";
+
+            setInterval(() => {
+                switch (currentLight) {
+                    
+                    case "redYellow":
+                        changeLight(`redLightMaterial${idPrefix}`, "1 0 0");
+                        changeLight(`yellowLightMaterial${idPrefix}`, "1 1 0");
+                        changeLight(`greenLightMaterial${idPrefix}`, "0 0.5 0");
+                        currentLight = "green";
+                        break;
+                    case "green":
+                        changeLight(`redLightMaterial${idPrefix}`, "0.5 0 0");
+                        changeLight(`yellowLightMaterial${idPrefix}`, "0.5 0.5 0");
+                        changeLight(`greenLightMaterial${idPrefix}`, "0 1 0");
+                        currentLight = "yellow";
+                        break;
+                    case "yellow":
+                        changeLight(`redLightMaterial${idPrefix}`, "0.5 0 0");
+                        changeLight(`yellowLightMaterial${idPrefix}`, "1 1 0");
+                        changeLight(`greenLightMaterial${idPrefix}`, "0 0.5 0");
+                        currentLight = "red";
+                        break;
+                    case "red":
+                        changeLight(`redLightMaterial${idPrefix}`, "1 0 0");
+                        changeLight(`yellowLightMaterial${idPrefix}`, "0.5 0.5 0");
+                        changeLight(`greenLightMaterial${idPrefix}`, "0 0.5 0");
+                        currentLight = "stop";
+                        break;
+                }
+            }, 1000);
+}
+        function changeLight(lightId, color) {
+            const lightMaterial = document.getElementById(lightId);
+            lightMaterial.setAttribute("diffuseColor", color);
+        }
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+#X3D V3.3 utf8
+
+
+#schodki po srodku(plaszczyzna z) po lewej stronie
+
+Transform{
+    translation -400 25 -27
+    scale 1 0.5 0.1
+    children[
+        DEF sciana Shape{
+            appearance Appearance{
+                material Material{
+                    emissiveColor 0.2 0.2 0.2
+                    transparency 0
+                    specularColor 0.5 0.5 0.5
+                }
+            }
+            geometry Box{
+                size 100 100 100
+            } 
+        }
+    ]
+}
+
+Transform{
+    translation -345 25 -2
+    scale 0.1 0.5 0.6
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -310 25 27
+    scale 0.8 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -270 25 85
+    scale 0.1 0.5 1.25
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -220 25 -60
+    scale 0.1 0.5 4.3
+    children[ 
+        USE sciana 
+    ]
+}
+
+#finalny korytarz
+
+#zaulek przy schodach
+Transform{
+    translation -250 25 -27
+    scale 0.7 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -300 25 -185
+    scale 1.5 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -370 25 -135
+    scale 0.1 0.5 1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -325 25 -85
+    scale 1 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -270 25 -110
+    scale 0.1 0.5 0.6
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -288 25 -140
+    scale 0.45 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+#zamianka zaraz przed finalem
+
+Transform{
+    translation -265 25 -275
+    scale 1 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -370 25 -340
+    scale 0.1 0.5 1.4
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -315 25 -410
+    scale 1.2 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -250 25 -452
+    scale 0.1 0.5 0.95
+    children[ 
+        USE sciana 
+    ]
+}
+
+#mijanka
+
+Transform{
+    translation -250 25 -370
+    scale 0.1 0.5 0.8
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -310 25 -310
+    scale 0.1 0.5 0.8
+    children[ 
+        USE sciana 
+    ]
+}
+
+
+#dluga sciana u gory
+
+Transform{
+    translation -40 25 -275
+    scale 3.8 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+#mijanka z samej gory (dluga)
+
+
+Transform{
+    translation -30 25 -450
+    scale 3.25 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -12 25 -400
+    scale 2.95 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 17 25 -350
+    scale 3.5 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+##dwie pionowe w tym samym
+
+Transform{
+    translation -195 25 -365
+    scale 0.1 0.5 1.8
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 131 25 -430
+    scale 0.1 0.5 0.5
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 190 25 -420
+    scale 0.1 0.5 1.5
+    children[ 
+        USE sciana 
+    ]
+}
+
+
+#prawa gora
+
+Transform{
+    translation 250 25 -395
+    scale 0.1 0.5 1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 343 25 -450
+    scale  1.95 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 440 25 -355
+    scale 0.1 0.5 2
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 410 25 -260
+    scale 0.7 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 415 25 -210
+    scale 1.65 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 330 25 -298
+    scale 0.1 0.5 1.85
+    children[ 
+        USE sciana 
+    ]
+}
+
+
+Transform{
+    translation 360 25 -353
+    scale 0.6 0.5 0.75
+    children[ 
+        USE sciana 
+    ]
+}
+
+# #rondo 
+
+# Transform{
+#     translation 230 25 -270
+#     children[ 
+#         Shape {
+#             appearance Appearance{
+#                 material Material{
+#                     emissiveColor 0.2 0.2 0.2
+#                     transparency 0
+#                     specularColor 0.5 0.5 0.5
+#                 }
+#             }
+#             geometry Cylinder {
+#                 height 50
+#                 radius 25
+#             }
+#         }
+#     ]
+# }
+
+#prawy srodek
+
+Transform{
+    translation 380 25 -100
+    scale 0.1 0.5 2.3
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 440 25 -40
+    scale 0.1 0.5 2.3
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 376 25 75
+    scale 1.38 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 305 25 -25
+    scale 0.1 0.5 2.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+#ostateczny korytarz nad kwadratami
+
+Transform{
+    translation -170 25 -100
+    scale 0.1 0.5 2
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -100 25 -200
+    scale 1.5 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -20 25 -175
+    scale 0.1 0.5 0.6
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation -95 25 -125
+    scale 0.5 0.5 0.6
+    children[ 
+        USE sciana 
+    ]
+}
+
+
+Transform{
+    translation 50 25 -150
+    scale 1.5 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 130 25 -160
+    scale 0.1 0.5 0.3
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 190 25 -170
+    scale 1.2 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 270 25 -50
+    scale 0.7 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 200 25 -97
+    scale 0.7 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+
+Transform{
+    translation 280 25 -150
+    scale 0.1 0.5 0.5
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 293 25 -130
+    scale 0.34 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+
+Transform{
+    translation 255 25 -170
+    scale 0.6 0.5 0.1
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 52 25 -240
+    scale 0.57 0.5 0.75
+    children[ 
+        USE sciana 
+    ]
+}
+
+Transform{
+    translation 110 25 -260
+    scale 0.8 0.5 0.4
+    children[ 
+        USE sciana 
+    ]
+}
+

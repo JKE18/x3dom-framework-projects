@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="x3dom-full.js"></script>
+    <meta charset="UTF-8">
+    <title>Szachownica 8x8</title>
+    <script type="text/javascript" src="https://www.x3dom.org/download/x3dom.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/download/x3dom.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff;
+        }
+        x3d {
+            width: 1000px;
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; top: 10px; left: 10px;">
+        <button onclick="document.getElementById('white_pawn_move_timer').setAttribute('startTime', (new Date()).getTime() / 1000);">
+            Przesuń biały pionek
+        </button>
+        <button onclick="document.getElementById('black_pawn_move_timer').setAttribute('startTime', (new Date()).getTime() / 1000);">
+            Przesuń czarny pionek
+        </button>
+        <button onclick="document.getElementById('white_knight_timer').setAttribute('startTime', (new Date()).getTime() / 1000);">
+            Obroń koniem
+        </button>
+    </div>
+    
+    <x3d>
+        <Scene>
+            <viewpoint id="gora" orientation="1 0 0 -1.57" position="0 15 0" centerOfRotation="8 0 8"></viewpoint>
+            <PointLight location="0 5 0" intensity="0.8"></PointLight>
+
+            <!-- CZARNE -->
+
+            <Transform translation="-18.2 -0.2 -0.1" scale = "0.4 0.4 0.4">
+                <Inline url="wieza_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-19.7 -0.2 0.8" scale = "0.5 0.5 0.5">
+                <Inline url="konik_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-13.7 -0.2 0.8" scale = "0.5 0.5 0.5">
+                <Inline url="goniec_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-12.3 -0.2 -0.1" scale = "0.4 0.4 0.4">
+                <Inline url="hetman_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-10.25 -0.2 -0.1" scale = "0.4 0.4 0.4">
+                <Inline url="krol_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-10.7 -0.2 0.8" scale = "0.5 0.5 0.5">
+                <Inline url="goniec_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-14.7 -0.2 0.8" scale = "0.5 0.5 0.5">
+                <Inline url="konik_c.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-11.2 -0.2 -0.1" scale = "0.4 0.4 0.4">
+                <Inline url="wieza_c.x3d"></Inline>
+            </Transform>
+
+
+
+            <Transform translation="-11.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform translation="-10.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform translation="-9.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform translation="-8.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform DEF="black_pawn" translation="-7.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform translation="-6.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform translation="-5.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+            <Transform translation="-4.3 -0.2 -0.05" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_c.x3d"></Inline>
+            </Transform>
+
+
+             <!-- BIALE -->
+
+             <Transform translation="-18.2 -0.2 6.9" scale = "0.4 0.4 0.4">
+                <Inline url="wieza_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="14.75 0 -0.75" scale = "0.5 0.5 0.5" rotation = "0 1 0 3.14">
+                <Inline url="konik_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-13.7 -0.2 7.8" scale = "0.5 0.5 0.5">
+                <Inline url="goniec_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-12.3 -0.2 6.9" scale = "0.4 0.4 0.4">
+                <Inline url="hetman_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-10.25 -0.2 6.9" scale = "0.4 0.4 0.4">
+                <Inline url="krol_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-10.7 -0.2 7.8" scale = "0.5 0.5 0.5">
+                <Inline url="goniec_b.x3d"></Inline>
+            </Transform>
+
+            <Transform DEF="white_knight" translation="19.75 0 -0.75" scale = "0.5 0.5 0.5" rotation = "0 1 0 3.14">
+                <Inline url="konik_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-11.2 -0.2 6.9" scale = "0.4 0.4 0.4">
+                <Inline url="wieza_b.x3d"></Inline>
+            </Transform>
+
+
+
+            <Transform  translation="-11.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            <Transform translation="-10.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            <Transform translation="-9.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            <Transform DEF="white_pawn" translation="-8.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+
+            <Transform translation="-7.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            <Transform translation="-6.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            <Transform translation="-5.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            <Transform translation="-4.3 -0.2 5" scale = "0.4 0.4 0.4">
+                <Inline url="pionek_b.x3d"></Inline>
+            </Transform>
+            
+
+            <Transform translation="0 -0.1 0">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="0.05 0.05 0.05"></Material>
+                    </Appearance>
+                    <Box size="9 0.2 9"></Box>
+                </Shape>
+            </Transform>
+
+
+            <TimeSensor id="white_pawn_move_timer" cycleInterval="2" loop="false"></TimeSensor>
+            <PositionInterpolator DEF="white_pawn_move" key="0 1" keyValue="-8.3 -0.2 5, -8.3 -0.2 3"></PositionInterpolator>
+            <ROUTE fromNode="white_pawn_move_timer" fromField="fraction_changed" toNode="white_pawn_move" toField="set_fraction"></ROUTE>
+            <ROUTE fromNode="white_pawn_move" fromField="value_changed" toNode="white_pawn" toField="set_translation"></ROUTE>
+
+
+            <TimeSensor id="black_pawn_move_timer" cycleInterval="2" loop="false"></TimeSensor>
+            <PositionInterpolator DEF="black_pawn_move" key="0 1" keyValue="-7.3 -0.2 -0.05, -7.3 -0.2 1.95"></PositionInterpolator>
+            <ROUTE fromNode="black_pawn_move_timer" fromField="fraction_changed" toNode="black_pawn_move" toField="set_fraction"></ROUTE>
+            <ROUTE fromNode="black_pawn_move" fromField="value_changed" toNode="black_pawn" toField="set_translation"></ROUTE>
+
+
+            <TimeSensor id="white_knight_timer" cycleInterval="2" loop="false"></TimeSensor>
+            <PositionInterpolator DEF="white_knight_def" key="0 1" keyValue="19.75 0 -0.75, 18.75 0 -2.75"></PositionInterpolator>
+            <ROUTE fromNode="white_knight_timer" fromField="fraction_changed" toNode="white_knight_def" toField="set_fraction"></ROUTE>
+            <ROUTE fromNode="white_knight_def" fromField="value_changed" toNode="white_knight" toField="set_translation"></ROUTE>
+ 
+
+            <Group>
+                <Script>                 
+                        for (let i = 0; i < 8; i++) {
+                            for (let j = 0; j < 8; j++) {
+                                const color = (i + j) % 2 === 0 ? '0.9 0.9 0.9' : '0.1 0.1 0.1'; // Naprzemienne kolory
+                                document.write(`
+                                    <Transform translation="${i - 3.5} 0 ${j - 3.5}">
+                                        <Shape>
+                                            <Appearance>
+                                                <Material diffuseColor="${color}"></Material>
+                                            </Appearance>
+                                            <Box size="1 0.1 1"></Box>
+                                        </Shape>
+                                    </Transform>
+                                `);
+                            }
+                        }
+                </Script>
+            </Group>
+
+        </Scene>
+    </x3d>
+</body>
+</html>

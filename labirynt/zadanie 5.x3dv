@@ -1,0 +1,699 @@
+#X3D V3.3 utf8
+
+
+Inline {
+    url ["sciany_zewnatrz.x3dv"]
+}
+
+Inline{
+    url ["sciany_lab_dol.x3dv"]
+}
+
+Inline{
+    url ["sciany_lab_gora.x3dv"]
+}
+
+Inline{
+    url ["viewpoint.x3dv"]
+}
+
+NavigationInfo {
+    speed 20.0
+}
+
+Background {
+    groundAngle [ 1.309, 1.57]
+    groundColor [
+        0.1 0.1 0.0,
+        0.4 0.25 0.2,
+        0.6 0.6 0.6
+    ]
+    skyAngle [ 1.309, 1.57 ]
+    skyColor [
+        0.0 0.2 0.7,
+        0.0 0.5 1.0,
+        1.0 1.0 1.0
+    ]
+}
+Fog {
+    color 1 1 1
+    fogType "EXPONENTIAL"
+    visibilityRange 2500
+}
+
+
+DEF PrzyciskInnySwiat Anchor {
+    url ["C:\\Users\\Jakub\\Desktop\\STUDIA\\1.x3dv"]
+    children [
+        Transform {
+            translation 0 25 203
+            children [
+                Shape {
+                    appearance Appearance {
+                        material Material { diffuseColor 0.1 0.5 0.8 }
+                    }
+                    geometry Box {
+                        size 7 7 10
+                    }
+                }
+            ]
+        }
+    ]
+}
+DEF PochodniaOdcien Material { diffuseColor 1 0 0 }
+
+DEF Pochodnia Transform {
+    translation 493 33 200
+    rotation 0 0 1 0.523
+    scale 0.5 0.5 0.5
+    children [
+        Shape {
+            geometry Box {
+                size 3 20 3
+            }
+            appearance Appearance {
+                material Material { diffuseColor 0.55 0.27 0.07 }
+            }
+        }
+        Transform {
+            translation -1 14 0
+            children [
+                Shape {   
+                    geometry Sphere {
+                        radius 5
+                    }
+                    appearance Appearance {
+                        material USE PochodniaOdcien
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+DEF PochodniaLight SpotLight {
+    location 0 5 0
+    direction 0 -1 0
+    color 1 0 0
+    intensity 1
+    beamWidth 0.5
+    cutOffAngle 0.75
+}
+DEF PochodniaTimer TimeSensor {
+    cycleInterval 2
+    loop TRUE
+}
+DEF PochodniaColor ColorInterpolator {
+    key [0, 0.5, 1]
+    keyValue [1 0 0, 1 1 0, 1 0 0]
+}
+
+ROUTE PochodniaTimer.fraction_changed TO PochodniaColor.set_fraction
+ROUTE PochodniaColor.value_changed TO PochodniaLight.set_color
+ROUTE PochodniaColor.value_changed TO PochodniaOdcien.set_diffuseColor
+
+
+DEF SecretTextLight PointLight {
+    color 1 1 1
+    intensity 1
+    on FALSE
+    location 275 28 356
+    radius 1
+}
+
+DEF TextColor Material {
+    diffuseColor 0 0 0
+    transparency 1
+}
+
+DEF SecretText Transform {
+    translation 275 28 356
+    children [
+        Shape {
+            geometry Text {
+                string ["Niektore sciany"]
+                fontStyle FontStyle {
+                    justify "MIDDLE"
+                    size 5
+                }
+            }
+            appearance Appearance {
+                material USE TextColor
+            }
+        }
+    ]
+}
+DEF SecretText2 Transform {
+    translation 275 23 356
+    children [
+        Shape {
+            geometry Text {
+                string ["sie ruszaja"]
+                fontStyle FontStyle {
+                    justify "MIDDLE"
+                    size 5
+                }
+            }
+            appearance Appearance {
+                material USE TextColor
+            }
+        }
+    ]
+}
+DEF PrzyciskSecretText Transform {
+    translation 255 25 400
+    children [
+        Shape {
+            geometry Box { size 5 5 5 }
+            appearance Appearance {
+                material Material { diffuseColor 0.1 0.5 0.8 }
+            }
+        }
+        DEF LightSwitch TouchSensor {}
+    ]
+}
+
+DEF LightControl Script {
+    field SFBool lightState FALSE
+    eventIn SFTime toggle
+    eventOut SFBool lightOn
+    eventOut SFFloat transparencyTrigger
+
+    url "javascript:
+    function toggle(time) {
+        lightState = !lightState;
+        lightOn = lightState;
+        transparencyTrigger = lightState ? 1 : 0;  // Trigger for interpolator
+    }"
+}
+
+DEF TransparencyInterpolation ScalarInterpolator {
+    key [0, 1]
+    keyValue [1, 0]
+}
+
+ROUTE LightSwitch.touchTime TO LightControl.toggle
+ROUTE LightControl.lightOn TO SecretTextLight.set_on
+ROUTE LightControl.transparencyTrigger TO TransparencyInterpolation.set_fraction
+ROUTE TransparencyInterpolation.value_changed TO TextColor.transparency
+
+DEF KulaTimer TimeSensor {
+    cycleInterval 4
+    loop FALSE
+}
+
+DEF Kula Transform {
+    translation -195 20 -200
+    children [
+        Shape {
+            geometry Sphere { radius 18 }
+            appearance Appearance {
+                material Material {
+                    diffuseColor 0.3 0.3 0.8
+                }
+            }
+        }
+    ]
+}
+
+DEF Pulapka ProximitySensor {
+    center -195 20 0
+    size 25 25 25
+}
+
+DEF KulaPositionInterpolator PositionInterpolator {
+    key [0, 0.333, 0.667, 1]
+    keyValue [-195 20 -200, -195 20 -150, -195 20 -100, -195 20 -50]
+}
+
+ROUTE Pulapka.enterTime TO KulaTimer.startTime
+ROUTE KulaTimer.fraction_changed TO KulaPositionInterpolator.set_fraction
+ROUTE KulaPositionInterpolator.value_changed TO Kula.set_translation
+
+
+
+PROTO table[ 
+    field SFColor kolorNog 0.55 0.27 0.07
+    field SFColor kolorBlatu 0.55 0.3 0.15
+]
+{
+Transform{
+    children[
+        Transform{
+            translation -50 15 350
+            children[
+                Shape{
+                    appearance Appearance{
+                        material Material{diffuseColor IS kolorBlatu}
+                    }
+                    geometry Box{
+                        size 35 5 20
+                    }
+                }
+            ]
+        }
+        Transform{
+            translation -65 7 347
+            children[
+                DEF Noga Shape{
+                    appearance Appearance{
+                        material Material{diffuseColor IS kolorNog}
+                    }
+                    geometry Cylinder {
+                        height 15
+                        radius 1.5
+                    }
+                }
+            ]
+        }
+        Transform{
+            translation -35 7 347
+            children USE Noga
+        }
+        Transform{
+            translation -35 7 357
+            children USE Noga
+        }
+        Transform{
+            translation -65 7 357
+            children USE Noga
+        }
+    ]
+}
+}
+
+PROTO chair[ 
+    field SFColor kolorNog 0.55 0.27 0.07
+    field SFColor kolorSiedzenia 0.7 0.27 0.05
+]
+{
+Transform{
+    children[
+        Transform{
+            translation -75 12 350
+            children[
+                Shape{
+                    appearance Appearance{
+                        material Material{diffuseColor IS kolorSiedzenia}
+                    }
+                    geometry Box{
+                        size 12 3 12
+                    }
+                }
+            ]
+        }
+        Transform{
+            translation -70 6 347.5
+            children[
+                DEF Noga Shape{
+                    appearance Appearance{
+                        material Material{diffuseColor IS kolorNog}
+                    }
+                    geometry Cylinder {
+                        height 9
+                        radius 0.8
+                    }
+                }
+            ]
+        }
+        Transform{
+            translation -70 6 352.5
+            children USE Noga
+        }
+        Transform{
+            translation -80 6 352.5
+            children USE Noga
+        }
+        Transform{
+            translation -80 6 347.5
+            children USE Noga
+        }
+        Transform{
+            translation -79.5 15 350.85
+            children[
+            DEF Oparcie Shape{
+                appearance Appearance{
+                    material Material{ diffuseColor IS kolorSiedzenia}
+                }
+                geometry Box{
+                    size 3 10 10
+                }
+            }
+            ]
+        }
+    ]
+}
+}
+
+
+PROTO paint[ 
+    field SFColor kolorWnetrze 0.05 0.1 0.08
+    field SFColor kolorObramowka 0.55 0.27 0.07
+]
+{
+Transform{
+    children[
+        Transform{
+            translation -50 40 345
+            children[
+                Shape{
+                    appearance Appearance{
+                        texture ImageTexture {
+                            url "kwiatki.jpg"
+                        }
+                        material Material{diffuseColor IS kolorWnetrze}
+                    }
+                    geometry Box{
+                        size 15 8 2
+                    }
+                }
+            ]
+        }
+        Transform{
+            translation -57.5 40.5 346
+            scale 0.2 0.9 0.2
+            children[
+                DEF Obramowka Shape{
+                    appearance Appearance{
+                        material Material{diffuseColor IS kolorObramowka}
+                    }
+                    geometry Box {
+                        size 10 10 10
+                    }
+                }
+            ]
+        }
+        Transform{
+            translation -42.5 40.5 346
+            scale 0.2 0.9 0.2
+            children USE Obramowka
+        }
+        Transform{
+            translation -50 44.5 346
+            scale 1.7 0.2 0.2
+            children USE Obramowka
+        }
+        Transform{
+            translation -50 36.5 346
+            scale 1.7 0.2 0.2
+            children USE Obramowka
+        }
+    ]
+}
+}
+
+
+chair{
+    kolorNog 0.55 0.27 0.07
+    kolorSiedzenia  0.7 0.27 0.05
+}
+
+table{
+    kolorBlatu 0.55 0.27 0.07
+    kolorNog 0.55 0.3 0.15
+}
+
+paint{
+    kolorWnetrze 0.05 0.1 0.08
+    kolorObramowka 0.55 0.27 0.07
+}
+#ognisko
+Group{
+    children[
+        DEF Konar Transform {
+            children Shape {
+                appearance Appearance {
+                    material Material {diffuseColor 0.5 0.1 0.1}
+                }
+                geometry Cylinder {
+                    height 6
+                    radius 1
+                }
+            }
+        }
+
+    Transform {
+        translation 232 5 -265
+        rotation 0 0 1 2
+        children USE Konar
+    }
+    Transform { 
+        translation 235 5 -262
+        rotation 1 0 0 2
+        children USE Konar
+    }
+    Transform {
+        translation 237 5 -265
+        rotation 0 0 -1 2
+        children USE Konar
+    }
+    Transform {
+        translation 235 5 -267
+        rotation -1 0 0 2
+        children USE Konar
+    }
+    Transform {
+        translation 233 5 -266.5
+        rotation 1 1 0 2
+        children USE Konar
+    }
+    Transform {
+        translation 237 5 -262.5
+        rotation -1 1 0 2
+        children USE Konar
+    }
+    Transform {
+        translation 233 5 -262.5
+        rotation -1 -1 0 2
+        children USE Konar
+    }
+    Transform {
+        translation 237 5 -266.5
+        rotation 1 -1 0 2
+        children USE Konar
+    }
+    
+
+
+    DEF Plomien Shape {
+        geometry IndexedFaceSet {
+            coord Coordinate {
+                point [
+                    -0.1 0.0 0.0, -0.8 2.5 0.0, -1.0 0.0 0.0,
+                    -0.5 0.0 0.01, -0.7 1.2 0.01, -0.9 0.0 0.01,
+                    -0.1 0.0 0.0, -0.2 1.4 0.0, -0.4 0.0 0.0
+                ]
+            }
+            coordIndex [
+                0, 1, 2, -1, 3, 4, 5, -1,
+                6, 7, 8, -1
+            ]   
+            colorPerVertex TRUE
+            color Color {
+                color [
+                    1.0 1.0 0.0, 1.0 0.0 0.0, 1.0 0.7 0.0,
+                    0.8 0.5 0.0, 1.0 0.1 0.0, 1.0 0.8 0.0   
+                ]
+            }
+            colorIndex [
+                3, 4, 5, 0, 0, 1, 2, 0,
+                3, 4, 5, 0, 0, 1, 2, 0
+            ]
+        }
+    }
+    Transform {
+        translation 237.5 5 -263.5
+        scale 5 10 5
+        children USE Plomien
+    }
+    ]
+}
+
+#gory
+Transform{
+    scale 100 100 100
+    translation -400 -100 -1400
+    children[
+    Shape {
+    appearance Appearance {
+        material Material { }
+    }
+    geometry ElevationGrid {
+        xDimension 9
+        zDimension 9
+        xSpacing 1.0
+        zSpacing 1.0
+        creaseAngle 1.57
+        height [
+            0.0, 0.0, 0.5, 1.0, 0.5, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 2.5, 0.5, 0.0, 0.0, 0.0
+            0.0, 0.0, 0.5, 0.5, 3.0, 1.0, 0.5, 0.0, 1.0,
+            0.0, 0.0, 0.5, 2.0, 4.5, 2.5, 1.0, 1.5, 0.5,
+            1.0, 2.5, 3.0, 4.5, 1.5, 3.5, 3.0, 1.0, 0.0,
+            0.5, 2.0, 2.0, 2.5, 3.5, 4.0, 2.0, 0.5, 0.0,
+            0.0, 0.0, 0.5, 1.5, 1.0, 2.0, 8.0, 1.5, 0.0,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0, 1.5, 0.5,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
+        ]
+        colorPerVertex TRUE
+        color Color{
+            color[
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+                
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0
+
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+                
+                1.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.5 0.1,
+                0.2 0.6 0.0, 0.0 0.5 0.1, 1.0 0.3 1.0,
+                0.0 0.4 1.0, 0.0 0.3 1.0, 1.0 0.3 1.0,
+            ]
+        }
+    }
+}
+    ]
+}
+
+
+
+# Duch
+Group {
+    children [
+        DEF Duch Transform {
+            translation 285 35 -310
+            children [
+                Shape {
+                    geometry Box {
+                        size 30 30 3
+                    }
+                    appearance Appearance {
+                        material DEF materialDuch Material {
+                        diffuseColor 0.5 0.5 1.0
+                        transparency 0.0
+                        }
+                        texture ImageTexture {
+                            url "duch.jpg"
+                        }   
+                    }
+                }
+            ]
+        }
+        DEF DuchTimer TimeSensor {
+            cycleInterval 35    
+            loop TRUE
+        }
+        DEF DuchMove PositionInterpolator {
+            key [0, 0.25, 0.5 ,0.75, 1]
+            keyValue [285 35 -310, 285 35 -400, 285 35 -310, 285 35 -220, 285 35 -310 ]
+        }
+        DEF DuchTransparency ScalarInterpolator {
+            key [0, 0.25, 0.5, 0.75, 1]
+            keyValue [0, 0.5, 1, 0.5, 0]
+        }
+    ]
+    ROUTE DuchTimer.fraction_changed TO DuchMove.set_fraction
+    ROUTE DuchMove.value_changed TO Duch.set_translation
+    ROUTE DuchTimer.fraction_changed TO DuchTransparency.set_fraction
+    ROUTE DuchTransparency.value_changed TO materialDuch.set_transparency
+}
+
+## ognisko
+Group {
+    Transform {
+        translation 0 100 550
+        children [
+            Shape {
+                geometry Sphere {
+                    radius 5
+                }
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 1 0.5 0
+                        emissiveColor 1 0.2 0
+                    }
+                }
+            },
+            Transform {
+                translation 0 100 550
+                children [
+                    Shape {
+                        geometry Cone {
+                            height 20
+                            bottomRadius 5
+                        }
+                        appearance Appearance {
+                            material Material {
+                                diffuseColor 1 0.8 0
+                                emissiveColor 1 0.5 0
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+
+#drzewo
+Group {
+    children [
+        Transform {
+            translation 235 27 530
+            children [
+                Shape {
+                    geometry Cylinder {
+                        height 50
+                        radius 10
+                    }
+                    appearance Appearance {
+                        material Material {
+                            diffuseColor 0.5 0.25 0
+                        }
+                    }
+                }
+                Transform {
+                    translation 0 25 0
+                    children [
+                        Shape {
+                            geometry Sphere {
+                                radius 30
+                            }
+                            appearance Appearance {
+                                material Material {
+                                    diffuseColor 0 0.5 0
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
